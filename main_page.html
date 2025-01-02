@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="testbook-logo.webp" alt="logo">
+        <h1>Hello user!</h1>
+        <p>Enter your name to continue the Quiz.</p>
+        <form action="submit">
+            <input type="text" name="name" placeholder="ENTER YOUR NAME..." required>
+            <button type="submit">ENTER</button>
+        </form>
+            <p id="msg">You will have 10 seconds to answer each questions</p>
+            <hr>
+            <div id="category">
+                <h1>Select Category</h1>
+                <button value = "HTML" class="option">HTML</button>
+                <button value = "CSS" class="option">CSS</button>
+                <button value = "JavaScript" class="option">JavaScript</button>
+                <button value = "Python" class="option">Python</button>
+                <button value = "Maths" class="option">Maths</button>
+                <button value = "Other" class="option">Other</button>
+            </div>
+       
+    </div>
+    <!-- <div id="quiz" >
+    <div id="questions">Q</div>
+    <button id="next-Q">Next</button> -->
+</div>
+    <script src="script.js"></script>
+</body>
+
+</html>
