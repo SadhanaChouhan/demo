@@ -20,17 +20,16 @@
         </form>
         <p id="msg">You will have 10 seconds to answer each questions</p>
         <hr>
+        <h1 class="heading">Select Category</h1>
         <div id="category">
-            <h1 class="heading">Select Category</h1>
-            <button value="HTML" class="option" onclick="openQuiz()">HTML</button>
-            <button value="CSS" class="option">CSS</button>
-            <button value="JavaScript" class="option">JavaScript</button>
-            <button value="Python" class="option">Python</button>
-            <button value="Maths" class="option">Maths</button>
-            <button value="Other" class="option">Other</button>
-        </div>
 
-    </div>
+            <button value='css' class="option" onclick="startQuiz('css')">CSS</button>
+            <button value='js' class="option" onclick="startQuiz('js')">JavaScript</button>
+            <button value='python' class="option" onclick="startQuiz('python')">Python</button>
+            <button value='java' class="option" onclick="startQuiz('java')">JAVA</button>
+            <button value='c/c++' class="option" onclick="startQuiz('c/c++')">C/C++</button>
+            <button value='html' class="option" onclick="startQuiz('html')">HTML</button>
+        </div>
 
     </div>
 
@@ -38,41 +37,46 @@
     <!-- Quiz box -->
     <div class="quiz-box">
         <header>
-            <div class="title">Quiz Application</div>
-            <div class="timer">
-                <div class="time-left">Time Left
-                    <span>10 sec</span>
-                </div>
-            </div>
-        </header>
-        <section>
-            <div class="questions">
-                <!-- insert Q using javascript -->
-            </div>
-            <div class="options">
-                <!-- insert A using javascript -->
-            </div>
-        </section>
-        <footer>
-            <div class="total-Q">
+            <div class="title heading sub-name"> </div>
+            <div class="question-count">
                 <!-- insert Question count -->
             </div>
-            <button type="submit" id="submit" class="btn">Submit</button>
-            <button id="next-btn" class="btn">Next</button>
+            <div class="time-left">Time Left
+                <span>10 sec</span>
+            </div>
+        </header>
+        <main>
+            <section>
+                <div class="questions">
+                    <!-- insert Q using javascript -->
+                </div>
+                <div class="choose-options">
+                    <!-- insert A using javascript -->
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="footer">
+                <button type="submit" id="submit" class="btn">Submit</button>
+                <button id="next-btn" class="btn">Next</button>
+            </div>
         </footer>
     </div>
 
     <!-- Result page -->
     <div class="result-box">
-        <h1 class="title">Quiz Result</h1>
-        <p class ="head">Total Question: <span>10</span></p >
-        <p class ="head">Correct Answer: <span>8</span></p >
-        <p class ="head">Wrong Answer: <span>2</span></p>
-        <div class="score">
-            Percentage: <span>80%</span>
-        </div>
-        <button  class="btn" type="reset" id="restart-btn">Restart</button>
-        <button  class="btn" type="button" id="home">Go To Home</button>
+        <h1 class=" heading">Quiz Result</h1>
+        <p class="title">USER NAME.....</p>
+        <p id="totalQuestion" class="title">Total Question: <span>11</span></p>
+        <p id="correct" class="title">Correct Answer: <span>8</span></p>
+        <p id="wrong" class="title">Wrong Answer: <span>2</span></p>
+        <p id="score" class="title"> Percentage:<span>20%</span></p>
+        <footer>
+            <div class="footer result-footer">
+                <button class="btn" type="reset" id="restart-btn">Restart</button>
+                <button class="btn" type="button" id="home">Go To Home</button>
+            </div>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>
