@@ -14,7 +14,7 @@
         <img src="testbook-logo.webp" alt="logo">
         <h1 class="heading">Hello user!</h1>
         <p id="line">Enter your name to continue the Quiz.</p>
-        <form action="submit">
+        <form action="submit" >
             <input type="text" name="name" placeholder="ENTER YOUR NAME..." required>
             <button class="btn" type="submit">ENTER</button>
         </form>
@@ -23,12 +23,12 @@
         <h1 class="heading">Select Category</h1>
         <div id="category">
 
-            <button value='css' class="option" onclick="startQuiz('css')">CSS</button>
-            <button value='js' class="option" onclick="startQuiz('js')">JavaScript</button>
-            <button value='python' class="option" onclick="startQuiz('python')">Python</button>
-            <button value='java' class="option" onclick="startQuiz('java')">JAVA</button>
-            <button value='c/c++' class="option" onclick="startQuiz('c/c++')">C/C++</button>
-            <button value='html' class="option" onclick="startQuiz('html')">HTML</button>
+            <button value='css' class="option" onclick = "startQuiz('CSS')">CSS</button>
+            <button value='js' class="option" onclick="startQuiz('JAVASCRIPT')">JavaScript</button>
+            <button value='python' class="option" onclick="startQuiz('PYTHON')">Python</button>
+            <button value='java' class="option" onclick="startQuiz('JAVA')">JAVA</button>
+            <button value='c/c++' class="option" onclick="startQuiz('C')">C/C++</button>
+            <button value='html' class="option" onclick="startQuiz('HTML')">HTML</button>
         </div>
 
     </div>
@@ -67,9 +67,9 @@
     <div class="result-box">
         <h1 class=" heading">Quiz Result</h1>
         <p class="title">USER NAME.....</p>
-        <p id="totalQuestion" class="title">Total Question: <span>11</span></p>
-        <p id="correct" class="title">Correct Answer: <span>8</span></p>
-        <p id="wrong" class="title">Wrong Answer: <span>2</span></p>
+        <p id="totalQuestion" class="title">Total Question: <span></span></p>
+        <p id="correct" class="title">Correct Answer: <span></span></p>
+        <p id="wrong" class="title">Wrong Answer: <span></span></p>
         <p id="score" class="title"> Percentage:<span>20%</span></p>
         <footer>
             <div class="footer result-footer">
@@ -78,7 +78,7 @@
             </div>
         </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
