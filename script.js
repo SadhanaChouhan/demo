@@ -507,70 +507,89 @@ const chooseOptionsElement = document.querySelector(".choose-options");
 const questionElement = document.querySelector(".questions");
 const subName = document.querySelector(".sub-name");
 const questionCount = document.querySelector(".questions-count");
-const totalQuestion = document.querySelector("#totalQuestion span");
-const totalScore = document.querySelector("#correct span");
+
 
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
 // start Quiz function
 function startQuiz(subject) {
+    currentQuestionIndex = 0;
     console.log("startQuiz function called with subject:", subject);
     main_page.style.display = "none";
     quiz_box.style.display = "block";
-    showQuestion(subject);
-    startTimer();
-    checkAnswer();
+    showQuestion(subject, currentQuestionIndex);
+    startTimer(subject);
+    checkAnswer("", subject);
 }
 
 // Show Question function
-function showQuestion(subject) {
+function showQuestion(subject, currentQuestionIndex) {
     subName.innerHTML = subject;
     console.log("Showing question for subject:", subject);
     const currentQuestion = questions[subject][currentQuestionIndex];
     questionElement.innerHTML = `<h2>${currentQuestion.question}</h2>`;
     chooseOptionsElement.innerHTML = "";
-    for (let i = 0; i < currentQuestion.chooseOptions.length; i++) {
+    currentQuestion.chooseOptions.forEach(choice => {
+        const button = document.createElement("button");
+        button.textContent = choice;
+        // button.id = "option-btn";
+        button.classList.add("option-btn");
+        button.addEventListener("click", () => checkAnswer(button, subject));
+        chooseOptionsElement.appendChild(button);
+    });
 
-        chooseOptionsElement.innerHTML += `<button  id="option-btn" onclick ="checkAnswer('${currentQuestion.chooseOptions[i]}' , '${subject}')">${currentQuestion.chooseOptions[i]}</button>`
+    // if (currentQuestionIndex === questions[subject].length - 1) {
+    //      const submitButton = document.createElement("button"); 
+    //      submitButton.textContent = "Submit";
+    //       submitButton.classList.add("btn"); 
+    //       submitButton.addEventListener("click", () => showResult());
+    //        chooseOptionsElement.appendChild(submitButton); 
+    //     }
 
-    }
 }
 
-function checkAnswer(selectedOptions, subject) {
+
+
+function checkAnswer(button, subject) {
+    const selectedOption = button.textContent;
+    // console.log("checkAnswer function called with selected option:", selectedOptions.textContent, "and subject:", subject);
     const currentQuestion = questions[subject][currentQuestionIndex];
-    const selectedOption = document.querySelector("#option-btn");
-    if (selectedOption && selectedOption.textContent === currentQuestion.answer) {
+    // Ensure the selected option is checked
+    // const selectedOption = document.querySelector("#option-btn:checked");
+    if (selectedOption === currentQuestion.answer) {
         score++;
         console.log(score);
     }
     currentQuestionIndex++;
-    // startTimer();
     if (currentQuestionIndex < questions[subject].length) {
-        showQuestion(subject);
+        showQuestion(subject, currentQuestionIndex);
+        clearInterval(timer);  // clear the previous timer
+        startTimer(subject);   // start the timer for the next question
     } else {
-        showResult();
+        showResult(subject, score);
     }
 }
 
 // result function
 function showResult(subject, score) {
+    console.log("result page" + subject);
     quiz_box.style.display = "none";
     result_box.style.display = "block";
-    document.querySelector(" #score span").textContent = `${(score / questions.length) * 100}%`;
-
-    totalQuestion.textContent = `${questions[subject].length}`;
-    console.log("Total questions:", totalQuestions);
-    totalScore.textContent = `${score}`;
+    const totalQuestions = questions[subject].length;
+    document.querySelector("#totalQuestion span").textContent = `${totalQuestions}`;
+    document.querySelector(" #percentage span").textContent = `${(score / totalQuestions) * 100}%`;
+    document.querySelector("#correct span").textContent = `${score}`;
+    document.querySelector("#wrong  span").textContent = `${totalQuestions - score}`;
 }
 
 // startTimer()
-function startTimer() {
+function startTimer(subject) {
     let timeLeft = 10;
     timer = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(timer);
-            checkAnswer("");
+            checkAnswer("", subject);
         } else {
             document.querySelector(".time-left span").textContent = `${timeLeft} sec`;
             timeLeft--;
@@ -578,13 +597,13 @@ function startTimer() {
     }, 1000);
 }
 
-function restartQuiz() {
+function restartQuiz(subject) {
     currentQuestionIndex = 0;
     score = 0;
     result_box.style.display = "none";
     quiz_box.style.display = "block";
-    showQuestion();
-    startTimer();
+    showQuestion(subject, currentQuestionIndex);
+    startTimer(subject);
 }
 
 
@@ -593,7 +612,14 @@ document.querySelector(".main-page form").addEventListener("submit", (e) => {
     startQuiz();
 });
 document.querySelector("#next-btn").addEventListener("click", () => {
-    checkAnswer("");
+    const button = document.querySelector(".option-btn.selected");
+
+
+    if (button) {
+        checkAnswer(button, subject);
+    } else {
+        console.log("No option selected");
+    }
 });
 document.querySelector("#restart-btn").addEventListener("click", () => {
     restartQuiz();
@@ -602,7 +628,7 @@ document.querySelector("#home").addEventListener("click", () => {
     location.reload();
 });
 
-document.querySelector("#submit").addEventListener("click", () => {
-    showResult();
+// document.querySelector("#submit").addEventListener("click", () => {
+//     showResult();
 
-});
+// });
